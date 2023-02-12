@@ -36,7 +36,7 @@ public class Main {
                         do { //Menu principal
                             System.out.println("""
                                     Menu Principal
-                                    1. Jugar Ghosts
+                                    1. Jugar Battleship
                                     2. Configuración
                                     3. Reportes
                                     4. Mi Perfil
