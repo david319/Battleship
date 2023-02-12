@@ -109,6 +109,16 @@ public class Class_Player {
         }
     }
 
+    public static void cambiarN(String nombre, String Password) {
+        for (Player player : Jugadores) {
+            if (player.getNombre().equals(nombre) && player.getPass().equals(Password)) {
+                System.out.println("Ingrese el nuevo nombre:");
+                String newNombre = leer.next();
+                player.setNombre(newNombre);
+            }
+        }
+    }
+
     public static void reportes() {
         for (int i = 0; i < 10; i++) {
             if (reportes[i] != null) {

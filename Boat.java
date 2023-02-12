@@ -26,6 +26,38 @@ public class Boat {
         this.health = health;
     }
 
+    public void colocarBarco(int x, int y, Boat[][] tablero) {
+        tablero[x][y] = this;
+    }
+
+    public int tipoBarco() {
+        if (this instanceof PA) {
+            return 1;
+        } else if (this instanceof AZ) {
+            return 2;
+        } else if (this instanceof SM) {
+            return 3;
+        } else if (this instanceof DT) {
+            return 4;
+        } else {
+            return 0;
+        }
+    }
+
+    public static boolean obtenerBarco(int x, int y, Boat[][] tablero) {
+        if (tablero[x][y] != null) {
+            tablero[x][y].setHealth(tablero[x][y].getHealth() - 1);
+            if (tablero[x][y].getHealth() == 0) {
+                tablero[x][y] = null;
+                return true;
+            }
+            return true;
+        } else {
+            System.out.println("No hay barco en esa posición");
+            return false;
+        }
+    }
+
 
     public static class PA extends Boat {
 
