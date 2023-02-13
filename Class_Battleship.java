@@ -360,8 +360,32 @@ public class Class_Battleship {
                         System.out.println("Turno del jugador 1");
                         System.out.println("Ingrese la coordenada X");
                         x = leer.nextInt();
+                        if (x == -1) {
+                            System.out.println("Estas seguro que deseas salir del juego? (1)Si (2)No");
+                            int salir = leer.nextInt();
+                            if (salir == 1) {
+                                System.out.println(obtenerPlayer1() + " Se ha retirado del juego" + " " + obtenerPlayer2() + " ha ganado");
+                                add_Reporte(obtenerPlayer1(), " Se ha retirado del juego" + " " + obtenerPlayer2() + " ha ganado");
+                                add_puntos(obtenerPlayer2(), 3);
+                            } else {
+                                System.out.println("Ingrese la coordenada X");
+                                x = leer.nextInt();
+                            }
+                        }
                         System.out.println("Ingrese la coordenada Y");
                         y = leer.nextInt();
+                        if (y == -1) {
+                            System.out.println("Estas seguro que deseas salir del juego? (1)Si (2)No");
+                            int salir = leer.nextInt();
+                            if (salir == 1) {
+                                System.out.println(obtenerPlayer1() + " Se ha retirado del juego" + " " + obtenerPlayer2() + " ha ganado");
+                                add_Reporte(obtenerPlayer1(), " Se ha retirado del juego" + " " + obtenerPlayer2() + " ha ganado");
+                                add_puntos(obtenerPlayer2(), 3);
+                            } else {
+                                System.out.println("Ingrese la coordenada Y");
+                                y = leer.nextInt();
+                            }
+                        }
                         if (obtenerBarco(x, y, tableroPlayer2)) {
                             System.out.println("Has acertado");
 
@@ -422,8 +446,32 @@ public class Class_Battleship {
                         System.out.println("Turno del jugador 2");
                         System.out.println("Ingrese la coordenada X");
                         x = leer.nextInt();
+                        if (x == -1) {
+                            System.out.println("Estas seguro que deseas salir del juego? (1)Si (2)No");
+                            int salir = leer.nextInt();
+                            if (salir == 1) {
+                                System.out.println(obtenerPlayer2() + " Se ha retirado del juego" + " " + obtenerPlayer1() + " ha ganado");
+                                add_Reporte(obtenerPlayer2(), " Se ha retirado del juego" + " " + obtenerPlayer1() + " ha ganado");
+                                add_puntos(obtenerPlayer1(), 3);
+                            } else {
+                                System.out.println("Ingrese la coordenada X");
+                                x = leer.nextInt();
+                            }
+                        }
                         System.out.println("Ingrese la coordenada Y");
                         y = leer.nextInt();
+                        if (y == -1) {
+                            System.out.println("Estas seguro que deseas salir del juego? (1)Si (2)No");
+                            int salir = leer.nextInt();
+                            if (salir == 1) {
+                                System.out.println(obtenerPlayer2() + " Se ha retirado del juego" + " " + obtenerPlayer1() + " ha ganado");
+                                add_Reporte(obtenerPlayer2(), " Se ha retirado del juego" + " " + obtenerPlayer1() + " ha ganado");
+                                add_puntos(obtenerPlayer1(), 3);
+                            } else {
+                                System.out.println("Ingrese la coordenada Y");
+                                y = leer.nextInt();
+                            }
+                        }
                         if (obtenerBarco(x, y, tableroPlayer1)) {
                             System.out.println("Has acertado");
 
