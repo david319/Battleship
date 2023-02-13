@@ -61,6 +61,38 @@ public class Class_Battleship {
         }
     }
 
+    // Imprimir tablero player 1
+    public static void imprimirTableroPlayer1() {
+        System.out.println("  1  2  3  4  5  6  7  8");
+        for (int i = 0; i < tableroPlayer1.length; i++) {
+            System.out.print((i + 1) + " ");
+            for (int j = 0; j < tableroPlayer1[i].length; j++) {
+                if (tableroPlayer1[i][j] != null) {
+                    System.out.print("[ " + tableroPlayer1[i][j].getName() + " ]");
+                } else {
+                    System.out.print("[ X ]");
+                }
+            }
+            System.out.println(" ");
+        }
+    }
+
+    // Imprimir tablero player 2
+    public static void imprimirTableroPlayer2() {
+        System.out.println("  1  2  3  4  5  6  7  8");
+        for (int i = 0; i < tableroPlayer2.length; i++) {
+            System.out.print((i + 1) + " ");
+            for (int j = 0; j < tableroPlayer2[i].length; j++) {
+                if (tableroPlayer2[i][j] != null) {
+                    System.out.print("[ " + tableroPlayer2[i][j].getName() + " ]");
+                } else {
+                    System.out.print("[ X ]");
+                }
+            }
+            System.out.println(" ");
+        }
+    }
+
     // Imprimir fallo en el disparo
     public static void imprimirFallo(int x, int y) {
         for (int i = 0; i < tablero.length; i++) {
@@ -223,124 +255,82 @@ public class Class_Battleship {
                         cantidadBarcos = 1;
                     }
 
-                    if (cantidadBarcos == 4 && player1) {
-                        System.out.println("Coloca el portaaviones");
-                        System.out.println("Ingrese la coordenada X");
-                        x = leer.nextInt();
-                        System.out.println("Ingrese la coordenada Y");
-                        y = leer.nextInt();
-                        piezaValida(x, y);
-                        if (piezaValida1) {
-                            portaAviones.colocarBarco(x, y, tableroPlayer1);
-                            cantidadBarcos--;
+                    imprimirTablero();
+                    System.out.println("Jugador 1");
+                    System.out.println("Que tipo de barco desea colocar?");
+                    System.out.println("1. Portaaviones");
+                    System.out.println("2. Acorazado");
+                    System.out.println("3. Submarino");
+                    System.out.println("4. Destructor");
+                    System.out.println("Seleccione una opcion");
+                    int tipoBarco = leer.nextInt();
+                    System.out.println("Ingrese la coordenada X");
+                    x = leer.nextInt();
+                    System.out.println("Ingrese la coordenada Y");
+                    y = leer.nextInt();
+
+                    if (tipoBarco == 1) {
+                        for (int i = 0; tableroPlayer1.length > i; i++) {
+                            for (int j = 0; tableroPlayer1[i].length > j; j++) {
+                                if (tableroPlayer1[i][j] != null) {
+                                    System.out.println("Ya hay un barco en esa posicion");
+                                } else {
+                                    if (cantPA == 0) {
+                                        System.out.println("Ya hay un portaaviones");
+                                    } else {
+                                        tableroPlayer1[i][j] = new Boat.PA();
+                                        cantPA--;
+                                    }
+                                }
+                            }
                         }
-                    } else if (cantidadBarcos == 3 && player1) {
-                        System.out.println("Coloca el acorazado");
-                        System.out.println("Ingrese la coordenada X");
-                        x = leer.nextInt();
-                        System.out.println("Ingrese la coordenada Y");
-                        y = leer.nextInt();
-                        piezaValida(x, y);
-                        if (piezaValida1) {
-                            acorazado.colocarBarco(x, y, tableroPlayer1);
-                            cantidadBarcos--;
+                    } else if (tipoBarco == 2) {
+                        for (int i = 0; tableroPlayer1.length > i; i++) {
+                            for (int j = 0; tableroPlayer1[i].length > j; j++) {
+                                if (tableroPlayer1[i][j] != null) {
+                                    System.out.println("Ya hay un barco en esa posicion");
+                                } else {
+                                    if (cantAZ == 0) {
+                                        System.out.println("Ya hay un acorazado");
+                                    } else {
+                                        tableroPlayer1[i][j] = new Boat.AZ();
+                                        cantAZ--;
+                                    }
+                                }
+                            }
                         }
-                    } else if (cantidadBarcos == 2 && player1) {
-                        System.out.println("Coloca el submarino");
-                        System.out.println("Ingrese la coordenada X");
-                        x = leer.nextInt();
-                        System.out.println("Ingrese la coordenada Y");
-                        y = leer.nextInt();
-                        piezaValida(x, y);
-                        if (piezaValida1) {
-                            submarino.colocarBarco(x, y, tableroPlayer1);
-                            cantidadBarcos--;
+                    } else if (tipoBarco == 3) {
+                        for (int i = 0; tableroPlayer1.length > i; i++) {
+                            for (int j = 0; tableroPlayer1[i].length > j; j++) {
+                                if (tableroPlayer1[i][j] != null) {
+                                    System.out.println("Ya hay un barco en esa posicion");
+                                } else {
+                                    if (cantSM == 0) {
+                                        System.out.println("Ya hay un submarino");
+                                    } else {
+                                        tableroPlayer1[i][j] = new Boat.SM();
+                                        cantSM--;
+                                    }
+                                }
+                            }
                         }
-                    } else if (cantidadBarcos == 1 && player1) {
-                        System.out.println("Coloca el destructor");
-                        System.out.println("Ingrese la coordenada X");
-                        x = leer.nextInt();
-                        System.out.println("Ingrese la coordenada Y");
-                        y = leer.nextInt();
-                        piezaValida(x, y);
-                        if (piezaValida1) {
-                            destructor.colocarBarco(x, y, tableroPlayer1);
-                            cantidadBarcos--;
+                    } else if (tipoBarco == 4) {
+                        for (int i = 0; tableroPlayer1.length > i; i++) {
+                            for (int j = 0; tableroPlayer1[i].length > j; j++) {
+                                if (tableroPlayer1[i][j] != null) {
+                                    System.out.println("Ya hay un barco en esa posicion");
+                                } else {
+                                    if (cantDT == 0) {
+                                        System.out.println("Ya hay un destructor");
+                                    } else {
+                                        tableroPlayer1[i][j] = new Boat.DT();
+                                        cantDT--;
+                                    }
+                                }
+                            }
                         }
-                    } else if (cantidadBarcos == 0 && player1 && dificultad == 1) {
-                        System.out.println("Coloca el destructor");
-                        System.out.println("Ingrese la coordenada X");
-                        x = leer.nextInt();
-                        System.out.println("Ingrese la coordenada Y");
-                        y = leer.nextInt();
-                        piezaValida(x, y);
-                        if (piezaValida1) {
-                            destructor.colocarBarco(x, y, tableroPlayer1);
-                            cantidadBarcos--;
-                        }
-                    } else if (cantidadBarcos == 0 && player1) {
-                        player1 = false;
-                        player2 = true;
-                        cantidadBarcos = 4;
-                    } else if (cantidadBarcos == 4 && player2) {
-                        System.out.println("Coloca el portaaviones");
-                        System.out.println("Ingrese la coordenada X");
-                        x = leer.nextInt();
-                        System.out.println("Ingrese la coordenada Y");
-                        y = leer.nextInt();
-                        piezaValida(x, y);
-                        if (piezaValida2) {
-                            portaAviones.colocarBarco(x, y, tableroPlayer2);
-                            cantidadBarcos--;
-                        }
-                    } else if (cantidadBarcos == 3 && player2) {
-                        System.out.println("Coloca el acorazado");
-                        System.out.println("Ingrese la coordenada X");
-                        x = leer.nextInt();
-                        System.out.println("Ingrese la coordenada Y");
-                        y = leer.nextInt();
-                        piezaValida(x, y);
-                        if (piezaValida2) {
-                            acorazado.colocarBarco(x, y, tableroPlayer2);
-                            cantidadBarcos--;
-                        }
-                    } else if (cantidadBarcos == 2 && player2) {
-                        System.out.println("Coloca el submarino");
-                        System.out.println("Ingrese la coordenada X");
-                        x = leer.nextInt();
-                        System.out.println("Ingrese la coordenada Y");
-                        y = leer.nextInt();
-                        piezaValida(x, y);
-                        if (piezaValida2) {
-                            submarino.colocarBarco(x, y, tableroPlayer2);
-                            cantidadBarcos--;
-                        }
-                    } else if (cantidadBarcos == 1 && player2) {
-                        System.out.println("Coloca el destructor");
-                        System.out.println("Ingrese la coordenada X");
-                        x = leer.nextInt();
-                        System.out.println("Ingrese la coordenada Y");
-                        y = leer.nextInt();
-                        piezaValida(x, y);
-                        if (piezaValida2) {
-                            destructor.colocarBarco(x, y, tableroPlayer2);
-                            cantidadBarcos--;
-                        }
-                    } else if (cantidadBarcos == 0 && player2 && dificultad == 1) {
-                        System.out.println("Coloca el destructor");
-                        System.out.println("Ingrese la coordenada X");
-                        x = leer.nextInt();
-                        System.out.println("Ingrese la coordenada Y");
-                        y = leer.nextInt();
-                        piezaValida(x, y);
-                        if (piezaValida2) {
-                            destructor.colocarBarco(x, y, tableroPlayer2);
-                            cantidadBarcos--;
-                        }
-                    } else if (cantidadBarcos == 0 && player2) {
-                        player1 = true;
-                        player2 = false;
-                        piezaValida1 = true;
+                    } else {
+                        System.out.println("Opcion no valida");
                     }
                 }
 
@@ -420,7 +410,7 @@ public class Class_Battleship {
                             if (cantidadBarcos2 == 0) {
                                 System.out.println("El jugador" + obtenerPlayer1() + "ha ganado");
                                 add_Reporte(obtenerPlayer1(), "Ha ganado al hundir todos los barcos de " + obtenerPlayer2()
-                                + " en Modo " + getDificultad());
+                                        + " en Modo " + getDificultad());
                                 add_puntos(obtenerPlayer1(), 3);
                                 gameOver = true;
                             } else {
@@ -504,6 +494,10 @@ public class Class_Battleship {
                                 }
                             }
                             if (cantidadBarcos1 == 0) {
+                                System.out.println("El jugador" + obtenerPlayer2() + "ha ganado");
+                                add_Reporte(obtenerPlayer2(), "Ha ganado al hundir todos los barcos de " + obtenerPlayer1()
+                                        + " en Modo " + getDificultad());
+                                add_puntos(obtenerPlayer2(), 3);
                                 gameOver = true;
                             } else {
                                 System.out.println("El jugador 2 tiene " + cantidadBarcos1 + " barcos");
@@ -519,7 +513,9 @@ public class Class_Battleship {
         } else if (modoJ == 2) {
             // Lo mismo que el modo 1 pero este muestra los barcos en el tablero
             // del jugador 1
-            while (!gameOver){
+            while (!gameOver) {
+
+                imprimirTablero();
                 System.out.println("Jugador 1");
                 System.out.println("Que tipo de barco desea colocar?");
                 System.out.println("1. Portaaviones");
@@ -593,9 +589,174 @@ public class Class_Battleship {
                             }
                         }
                     }
+                } else {
+                    System.out.println("Opcion no valida");
                 }
-            }
 
+                imprimirTableroPlayer2();
+                System.out.println("Turno del jugador 1");
+                System.out.println("Ingrese la coordenada X");
+                x = leer.nextInt();
+                if (x == -1) {
+                    System.out.println("Estas seguro que deseas salir del juego? (1)Si (2)No");
+                    int salir = leer.nextInt();
+                    if (salir == 1) {
+                        System.out.println(obtenerPlayer1() + " Se ha retirado del juego" + " " + obtenerPlayer2() + " ha ganado");
+                        add_Reporte(obtenerPlayer1(), " Se ha retirado del juego" + " " + obtenerPlayer2() + " ha ganado");
+                        add_puntos(obtenerPlayer2(), 3);
+                    } else {
+                        System.out.println("Ingrese la coordenada X");
+                        x = leer.nextInt();
+                    }
+                }
+                System.out.println("Ingrese la coordenada Y");
+                y = leer.nextInt();
+                if (y == -1) {
+                    System.out.println("Estas seguro que deseas salir del juego? (1)Si (2)No");
+                    int salir = leer.nextInt();
+                    if (salir == 1) {
+                        System.out.println(obtenerPlayer1() + " Se ha retirado del juego" + " " + obtenerPlayer2() + " ha ganado");
+                        add_Reporte(obtenerPlayer1(), " Se ha retirado del juego" + " " + obtenerPlayer2() + " ha ganado");
+                        add_puntos(obtenerPlayer2(), 3);
+                    } else {
+                        System.out.println("Ingrese la coordenada Y");
+                        y = leer.nextInt();
+                    }
+                }
+                if (obtenerBarco(x, y, tableroPlayer2)) {
+                    System.out.println("Has acertado");
+
+                    for (int i = 0; i < 10; i++) {
+                        for (int j = 0; j < 10; j++) {
+                            if (tableroPlayer2[i][j] != null) {
+                                if (tableroPlayer2[i][j].tipoBarco() == 1) {
+                                    cambiarPosicionBarcos();
+                                    if (tableroPlayer2[i][j].getHealth() == 0) {
+                                        System.out.println("Has hundido un portaaviones");
+                                    }
+                                } else if (tableroPlayer2[i][j].tipoBarco() == 2) {
+                                    cambiarPosicionBarcos();
+                                    if (tableroPlayer2[i][j].getHealth() == 0) {
+                                        System.out.println("Has hundido un acorazado");
+                                    }
+                                } else if (tableroPlayer2[i][j].tipoBarco() == 3) {
+                                    cambiarPosicionBarcos();
+                                    if (tableroPlayer2[i][j].getHealth() == 0) {
+                                        System.out.println("Has hundido un submarino");
+                                    }
+                                } else if (tableroPlayer2[i][j].tipoBarco() == 4) {
+                                    cambiarPosicionBarcos();
+                                    if (tableroPlayer2[i][j].getHealth() == 0) {
+                                        System.out.println("Has hundido un destructor");
+                                    }
+                                }
+                                cantidadBarcos2++;
+                            }
+                        }
+                    }
+                    if (cantidadBarcos2 == 0) {
+                        System.out.println("El jugador" + obtenerPlayer1() + "ha ganado");
+                        add_Reporte(obtenerPlayer1(), "Ha ganado al hundir todos los barcos de " + obtenerPlayer2()
+                                + " en Modo " + getDificultad());
+                        add_puntos(obtenerPlayer1(), 3);
+                        gameOver = true;
+                    } else {
+                        System.out.println("El jugador 2 tiene " + cantidadBarcos2 + " barcos");
+                    }
+                } else if (!obtenerBarco(x, y, tableroPlayer2)) {
+                    System.out.println("Has fallado");
+                    imprimirFallo(x, y);
+                }
+                cambiarTurno();
+
+                for (int i = 0; i < tablero.length; i++) {
+                    for (int j = 0; j < tablero[i].length; j++) {
+                        if (tablero[i][j].equals("[ F ]")) {
+                            tablero[i][j] = "[ X ]";
+                        }
+                    }
+                }
+
+                imprimirTableroPlayer1();
+
+                System.out.println("Turno del jugador 2");
+                System.out.println("Ingrese la coordenada X");
+                x = leer.nextInt();
+                if (x == -1) {
+                    System.out.println("Estas seguro que deseas salir del juego? (1)Si (2)No");
+                    int salir = leer.nextInt();
+                    if (salir == 1) {
+                        System.out.println(obtenerPlayer2() + " Se ha retirado del juego" + " " + obtenerPlayer1() + " ha ganado");
+                        add_Reporte(obtenerPlayer2(), " Se ha retirado del juego" + " " + obtenerPlayer1() + " ha ganado");
+                        add_puntos(obtenerPlayer1(), 3);
+                    } else {
+                        System.out.println("Ingrese la coordenada X");
+                        x = leer.nextInt();
+                    }
+                }
+                System.out.println("Ingrese la coordenada Y");
+                y = leer.nextInt();
+                if (y == -1) {
+                    System.out.println("Estas seguro que deseas salir del juego? (1)Si (2)No");
+                    int salir = leer.nextInt();
+                    if (salir == 1) {
+                        System.out.println(obtenerPlayer2() + " Se ha retirado del juego" + " " + obtenerPlayer1() + " ha ganado");
+                        add_Reporte(obtenerPlayer2(), " Se ha retirado del juego" + " " + obtenerPlayer1() + " ha ganado");
+                        add_puntos(obtenerPlayer1(), 3);
+                    } else {
+                        System.out.println("Ingrese la coordenada Y");
+                        y = leer.nextInt();
+                    }
+                }
+                if (obtenerBarco(x, y, tableroPlayer1)) {
+                    System.out.println("Has acertado");
+
+                    for (int i = 0; i < 10; i++) {
+                        for (int j = 0; j < 10; j++) {
+                            if (tableroPlayer1[i][j] != null) {
+                                if (tableroPlayer1[i][j].tipoBarco() == 1) {
+                                    cambiarPosicionBarcos();
+                                    if (tableroPlayer1[i][j].getHealth() == 0) {
+                                        System.out.println("Has hundido un portaaviones");
+                                    }
+                                } else if (tableroPlayer1[i][j].tipoBarco() == 2) {
+                                    cambiarPosicionBarcos();
+                                    if (tableroPlayer1[i][j].getHealth() == 0) {
+                                        System.out.println("Has hundido un acorazado");
+                                    }
+                                } else if (tableroPlayer1[i][j].tipoBarco() == 3) {
+                                    cambiarPosicionBarcos();
+                                    if (tableroPlayer1[i][j].getHealth() == 0) {
+                                        System.out.println("Has hundido un submarino");
+                                    }
+                                } else if (tableroPlayer1[i][j].tipoBarco() == 4) {
+                                    cambiarPosicionBarcos();
+                                    if (tableroPlayer1[i][j].getHealth() == 0) {
+                                        System.out.println("Has hundido un destructor");
+                                    }
+                                }
+                                cantidadBarcos1++;
+                            }
+                        }
+                    }
+                    if (cantidadBarcos1 == 0) {
+                        System.out.println("El jugador" + obtenerPlayer2() + "ha ganado");
+                        add_Reporte(obtenerPlayer2(), "Ha ganado al hundir todos los barcos de " + obtenerPlayer1()
+                                + " en Modo " + getDificultad());
+                        add_puntos(obtenerPlayer2(), 3);
+                        gameOver = true;
+                    } else {
+                        System.out.println("El jugador 2 tiene " + cantidadBarcos1 + " barcos");
+                    }
+
+                } else if (!obtenerBarco(x, y, tableroPlayer1)) {
+                    System.out.println("Has fallado");
+                }
+                cambiarTurno();
+            }
         }
+        while (!gameOver) ;
     }
 }
+
+
