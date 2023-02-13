@@ -11,7 +11,7 @@ public class Main {
 
         Scanner leer = new Scanner(System.in);
 
-        System.out.println("Bienvenido al juego de Ghost");
+        System.out.println("Bienvenido al juego de Battleship");
         int menuI, menuP; //menu inicial y menu principal
 
         do { //Menu inicial
