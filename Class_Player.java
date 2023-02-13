@@ -119,13 +119,20 @@ public class Class_Player {
         }
     }
 
+    // imprimir los Reportes con recursividad
     public static void reportes() {
-        for (int i = 0; i < 10; i++) {
-            if (reportes[i] != null) {
-                System.out.println(reportes[i]);
-            }
-        }
+        imprimirReportes(reportes.length - 1);
     }
+    public static void imprimirReportes(int i) {
+        if (i < 0) {
+            return;
+        }
+        System.out.println(reportes[i]);
+        imprimirReportes(i - 1);
+    }
+
+
+
 
     public static void add_Reporte(String nombre, String reporte) {
         for (int i = 9; i < 10 && i >= 0; i--) {
